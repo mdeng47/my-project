@@ -8,7 +8,6 @@ author:
   - name: Dora Deng
     affiliation:
       - University of Wisconsin, Madison
-bibliography: references.bib
 ---
 
 # Introduction
