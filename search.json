@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "A Correlation Analysis of Penguin Flipper Length and Body Mass",
+    "section": "",
+    "text": "Introduction\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\ndf = sns.load_dataset('penguins')\nsns.set_context('talk')\n\nRQ: Is there a correlation between penguins’ flipper length and body mass?\nPenguins have different body sizes and flipper lengths, and this project uses Python and Quarto to examine whether these two characteristics are correlated.\n\n\nLiterature Review\nPrevious research by Gorman et al. (2014) examined physical differences among Antarctic penguins and found that body size varies across species and sexes [@gorman2014ecological].\nThese findings suggest that penguins’ physical characteristics may be related to each other.\n\n\nMethod\nGiven that we have two columns of continuous data, flipper length measured in millimeters and body mass measured in grams, we will examine their relationship using simple Pearson correlation analysis.\nWe will also use a scatterplot to visualize the relationship between these two variables.\n\n\nResults\n\ncorr_val = np.array(\n    df[['flipper_length_mm', 'body_mass_g']].corr()\n)[0][1]\n\nnarrative = \"a very strong negative correlation\"\n\nif corr_val &gt; .8:\n    narrative = \"a very strong positive correlation\"\nelif corr_val &gt; .4:\n    narrative = \"a moderate positive correlation\"\nelif corr_val &gt; 0:\n    narrative = \"a positive but weak correlation\"\nelif corr_val &gt; -.4:\n    narrative = \"a moderate negative correlation\"\n\nUsing the simple Pearson correlation approach, these data produce a correlation coefficient of 0.87120.\nGiven this result, we conclude that there is a very strong positive correlation between penguins’ flipper length and body mass.\n\nfig, ax = plt.subplots(figsize=(6, 3.5))\n\nsns.scatterplot(\n    data=df,\n    y='body_mass_g',\n    x='flipper_length_mm',\n    ax=ax\n)\n\nplt.ylabel('Body Mass (g)')\nplt.xlabel('Flipper Length (mm)')\nplt.show()\n\n\n\n\n\n\n\nFigure 1: A scatterplot of penguin flipper length and body mass\n\n\n\n\n\n\n\nDiscussion\nThe results show that penguins with longer flippers generally have greater body mass, suggesting a strong positive correlation between these two characteristics.\nHowever, correlation does not imply causation, and differences in species or sex may also influence this relationship.\n\nsns.lmplot(\n    data=df,\n    y=\"body_mass_g\",\n    x=\"flipper_length_mm\"\n)\n\n\n\n\n\n\n\n\n\nsns.jointplot(\n    data=df,\n    y=\"body_mass_g\",\n    x=\"flipper_length_mm\",\n    kind=\"reg\"\n)\n\n\n\n\n\n\n\n\n\n\nReferences"
+  }
+]
